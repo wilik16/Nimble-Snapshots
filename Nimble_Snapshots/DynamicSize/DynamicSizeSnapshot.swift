@@ -152,8 +152,8 @@ public func haveValidDynamicSizeSnapshot(named name: String? = nil,
                                          usesDrawRect: Bool = false,
                                          pixelTolerance: CGFloat? = nil,
                                          tolerance: CGFloat? = nil,
-                                         resizeMode: ResizeMode = .frame) -> Predicate<Snapshotable> {
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+                                         resizeMode: ResizeMode = .frame) -> Nimble.Predicate<Snapshotable> {
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         return performDynamicSizeSnapshotTest(name,
                                               identifier: identifier,
                                               sizes: sizes,
@@ -242,8 +242,8 @@ public func recordDynamicSizeSnapshot(named name: String? = nil,
                                       sizes: [String: CGSize],
                                       isDeviceAgnostic: Bool = false,
                                       usesDrawRect: Bool = false,
-                                      resizeMode: ResizeMode = .frame) -> Predicate<Snapshotable> {
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+                                      resizeMode: ResizeMode = .frame) -> Nimble.Predicate<Snapshotable> {
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         return performDynamicSizeSnapshotTest(name,
                                               identifier: identifier,
                                               sizes: sizes,

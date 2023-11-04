@@ -15,9 +15,9 @@ func shortCategoryName(_ category: UIContentSizeCategory) -> String {
     return category.rawValue.replacingOccurrences(of: "UICTContentSizeCategory", with: "")
 }
 
-func combinePredicates<T>(_ predicates: [Predicate<T>],
-                          deferred: (() -> Void)? = nil) -> Predicate<T> {
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+func combinePredicates<T>(_ predicates: [Nimble.Predicate<T>],
+                          deferred: (() -> Void)? = nil) -> Nimble.Predicate<T> {
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         defer {
             deferred?()
         }
@@ -34,18 +34,18 @@ public func haveValidDynamicTypeSnapshot(named name: String? = nil,
                                          pixelTolerance: CGFloat? = nil,
                                          tolerance: CGFloat? = nil,
                                          sizes: [UIContentSizeCategory] = allContentSizeCategories(),
-                                         isDeviceAgnostic: Bool = false) -> Predicate<Snapshotable> {
+                                         isDeviceAgnostic: Bool = false) -> Nimble.Predicate<Snapshotable> {
     let mock = NBSMockedApplication()
 
-    let predicates: [Predicate<Snapshotable>] = sizes.map { category in
+    let predicates: [Nimble.Predicate<Snapshotable>] = sizes.map { category in
         let sanitizedName = sanitizedTestName(name)
         let nameWithCategory = "\(sanitizedName)_\(shortCategoryName(category))"
 
-        return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+        return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
             mock.mockPreferredContentSizeCategory(category)
             updateTraitCollection(on: actualExpression)
 
-            let predicate: Predicate<Snapshotable>
+            let predicate: Nimble.Predicate<Snapshotable>
             if isDeviceAgnostic {
                 predicate = haveValidDeviceAgnosticSnapshot(named: nameWithCategory, identifier: identifier,
                                                             usesDrawRect: usesDrawRect, pixelTolerance: pixelTolerance,
@@ -71,18 +71,18 @@ public func recordDynamicTypeSnapshot(named name: String? = nil,
                                       identifier: String? = nil,
                                       usesDrawRect: Bool = false,
                                       sizes: [UIContentSizeCategory] = allContentSizeCategories(),
-                                      isDeviceAgnostic: Bool = false) -> Predicate<Snapshotable> {
+                                      isDeviceAgnostic: Bool = false) -> Nimble.Predicate<Snapshotable> {
     let mock = NBSMockedApplication()
 
-    let predicates: [Predicate<Snapshotable>] = sizes.map { category in
+    let predicates: [Nimble.Predicate<Snapshotable>] = sizes.map { category in
         let sanitizedName = sanitizedTestName(name)
         let nameWithCategory = "\(sanitizedName)_\(shortCategoryName(category))"
 
-        return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+        return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
             mock.mockPreferredContentSizeCategory(category)
             updateTraitCollection(on: actualExpression)
 
-            let predicate: Predicate<Snapshotable>
+            let predicate: Nimble.Predicate<Snapshotable>
             if isDeviceAgnostic {
                 predicate = recordDeviceAgnosticSnapshot(named: nameWithCategory,
                                                          identifier: identifier,

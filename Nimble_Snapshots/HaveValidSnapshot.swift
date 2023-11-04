@@ -281,9 +281,9 @@ public func haveValidSnapshot(named name: String? = nil,
                               identifier: String? = nil,
                               usesDrawRect: Bool = false,
                               pixelTolerance: CGFloat? = nil,
-                              tolerance: CGFloat? = nil) -> Predicate<Snapshotable> {
+                              tolerance: CGFloat? = nil) -> Nimble.Predicate<Snapshotable> {
 
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         if switchChecksWithRecords {
             return recordSnapshot(name,
                                   identifier: identifier,
@@ -306,9 +306,9 @@ public func haveValidDeviceAgnosticSnapshot(named name: String? = nil,
                                             identifier: String? = nil,
                                             usesDrawRect: Bool = false,
                                             pixelTolerance: CGFloat? = nil,
-                                            tolerance: CGFloat? = nil) -> Predicate<Snapshotable> {
+                                            tolerance: CGFloat? = nil) -> Nimble.Predicate<Snapshotable> {
 
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         if switchChecksWithRecords {
             return recordSnapshot(name, identifier: identifier, isDeviceAgnostic: true, usesDrawRect: usesDrawRect,
                                   actualExpression: actualExpression, failureMessage: failureMessage)
@@ -322,9 +322,9 @@ public func haveValidDeviceAgnosticSnapshot(named name: String? = nil,
 
 public func recordSnapshot(named name: String? = nil,
                            identifier: String? = nil,
-                           usesDrawRect: Bool = false) -> Predicate<Snapshotable> {
+                           usesDrawRect: Bool = false) -> Nimble.Predicate<Snapshotable> {
 
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         return recordSnapshot(name, identifier: identifier, usesDrawRect: usesDrawRect,
                               actualExpression: actualExpression, failureMessage: failureMessage)
     }
@@ -332,9 +332,9 @@ public func recordSnapshot(named name: String? = nil,
 
 public func recordDeviceAgnosticSnapshot(named name: String? = nil,
                                          identifier: String? = nil,
-                                         usesDrawRect: Bool = false) -> Predicate<Snapshotable> {
+                                         usesDrawRect: Bool = false) -> Nimble.Predicate<Snapshotable> {
 
-    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
+    return Nimble.Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         return recordSnapshot(name, identifier: identifier, isDeviceAgnostic: true, usesDrawRect: usesDrawRect,
                               actualExpression: actualExpression, failureMessage: failureMessage)
     }
